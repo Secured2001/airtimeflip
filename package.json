@@ -1,12 +1,15 @@
 {
-  "name": "vite-starter",
+  "name": "airtime-flip-pwa",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "1.0.0",
+  "type": "commonjs",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node build-check.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "vite": "^5.4.2"
