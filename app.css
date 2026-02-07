@@ -671,7 +671,9 @@ body {
 }
 
 .install-btn.hidden {
-  display: none;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
 }
 
 @keyframes slideUp {

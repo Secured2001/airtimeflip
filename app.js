@@ -27,39 +27,46 @@ if ('serviceWorker' in navigator) {
 }
 
 let deferredPrompt;
+const installBtn = document.getElementById('install-btn');
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  const installBtn = document.getElementById('install-btn');
   if (installBtn) {
     installBtn.classList.remove('hidden');
     console.log('Install prompt available');
   }
 });
 
-const installBtn = document.getElementById('install-btn');
 if (installBtn) {
   installBtn.addEventListener('click', async () => {
-    if (!deferredPrompt) {
-      console.log('Install prompt not available');
-      return;
-    }
-
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    console.log(`User response to the install prompt: ${outcome}`);
-
-    deferredPrompt = null;
-    if (installBtn) {
-      installBtn.classList.add('hidden');
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`User response to the install prompt: ${outcome}`);
+      deferredPrompt = null;
+      if (installBtn) {
+        installBtn.classList.add('hidden');
+      }
+    } else {
+      console.log('Install prompt not available, showing fallback download');
+      if (navigator.share) {
+        navigator.share({
+          title: 'Airtime Flip',
+          text: 'Install the Airtime Flip app on your home screen',
+          url: window.location.href
+        }).catch(err => console.log('Share failed:', err));
+      }
     }
   });
+
+  if (!deferredPrompt) {
+    installBtn.classList.remove('hidden');
+  }
 }
 
 window.addEventListener('appinstalled', () => {
   console.log('PWA was installed');
-  const installBtn = document.getElementById('install-btn');
   if (installBtn) {
     installBtn.classList.add('hidden');
   }
