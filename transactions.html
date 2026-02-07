@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ff8c00" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Airtime Flip" />
+
+    <!-- PWA Icons - ADD YOUR ICON IMAGES HERE -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512x512.png" />
+    <link rel="apple-touch-icon" href="/icon-192x192.png" />
+    <!-- END OF ICON SECTION -->
+
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="stylesheet" href="/app.css" />
+    <title>Transactions - Airtime Flip</title>
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Transactions Header -->
+      <div class="transactions-header">
+        <h1>Transactions</h1>
+      </div>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Filter Section -->
+        <div class="filter-section">
+          <div class="filter-item" onclick="showUnavailablePopup()">
+            <span class="filter-label">Filter By: Airtime conversion</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="filter-item" onclick="showUnavailablePopup()">
+            <span class="filter-label">All status</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Transaction Stats -->
+        <div class="stats-grid">
+          <div class="stat-card successful">
+            <div class="stat-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <div class="stat-label">Successful Transaction</div>
+              <div class="stat-value">3</div>
+            </div>
+          </div>
+
+          <div class="stat-card pending">
+            <div class="stat-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <div class="stat-label">Pending Transaction</div>
+              <div class="stat-value">0</div>
+            </div>
+          </div>
+
+          <div class="stat-card failed">
+            <div class="stat-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="15" y1="9" x2="9" y2="15"></line>
+                <line x1="9" y1="9" x2="15" y2="15"></line>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <div class="stat-label">Failed Transaction</div>
+              <div class="stat-value">2</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state">
+          <p>No available Airtime Conversion transaction(s)</p>
+        </div>
+      </main>
+
+      <!-- Bottom Navigation -->
+      <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>Home</span>
+        </a>
+        <a href="#" class="nav-item" onclick="showUnavailablePopup(); return false;">
+          <div class="nav-icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline>
+            </svg>
+            <span class="badge">New</span>
+          </div>
+          <span>Services</span>
+        </a>
+        <a href="transactions.html" class="nav-item active">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span>Transactions</span>
+        </a>
+        <a href="#" class="nav-item" onclick="showUnavailablePopup(); return false;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M12 1v6m0 6v6m5.2-13.2l-4.2 4.2m0 6l4.2 4.2M23 12h-6m-6 0H1m18.2 5.2l-4.2-4.2m0-6l4.2-4.2"></path>
+          </svg>
+          <span>Settings</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Popup Modal -->
+    <div id="popup-overlay" class="popup-overlay" onclick="closePopup()">
+      <div class="popup-modal" onclick="event.stopPropagation()">
+        <div class="popup-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <h3 class="popup-title">Service Unavailable</h3>
+        <p class="popup-message">This service is not available at the moment. Please try again later.</p>
+        <button class="popup-btn" onclick="closePopup()">Okay</button>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
