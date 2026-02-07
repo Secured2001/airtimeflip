@@ -8,20 +8,18 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Airtime Flip" />
 
-    <!-- PWA Icons - ADD YOUR ICON IMAGES HERE -->
-    <!-- Replace the href values with your actual icon paths -->
-    <link rel="icon" type="image/png" sizes="192x192" href="img/logo.jpg" />
-    <link rel="icon" type="image/png" sizes="512x512" href="img/logo.jpg" />
-    <link rel="apple-touch-icon" href="img/logo.jpg" />
-    <!-- END OF ICON SECTION -->
+    <!-- PWA Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/logo.jpg" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/img/logo.jpg" />
+    <link rel="apple-touch-icon" href="/img/logo.jpg" />
 
     <link rel="manifest" href="/manifest.json" />
     <link rel="stylesheet" href="/app.css" />
     <title>Home - Airtime Flip</title>
-    <meta property="og:image" content="img/logo.jpgg">
-    <meta name="twitter:card" content="img/logo.jpg">
-    <meta name="twitter:image" content="img/logo.jpg">
-</head>
+    <meta property="og:image" content="/img/logo-512.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="/img/logo-512.png">
+  </head>
   <body>
     <div class="app-container">
       <!-- Header -->
@@ -144,7 +142,7 @@
             <a href="transactions.html" class="see-all">See all</a>
           </div>
           <div class="transactions-list">
-            <div class="transaction-item">
+            <!-- <div class="transaction-item">
               <div class="transaction-icon withdrawal">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
@@ -159,9 +157,9 @@
                 <div class="transaction-status success">SUCCESSFUL</div>
                 <div class="transaction-amount">NGN 100</div>
               </div>
-            </div>
+            </div> -->
 
-            <div class="transaction-item">
+            <!-- <div class="transaction-item">
               <div class="transaction-icon withdrawal">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
@@ -176,7 +174,7 @@
                 <div class="transaction-status success">SUCCESSFUL</div>
                 <div class="transaction-amount">NGN 17,100</div>
               </div>
-            </div>
+            </div> -->
 
             <div class="transaction-item">
               <div class="transaction-icon conversion">
@@ -189,7 +187,7 @@
               </div>
               <div class="transaction-details">
                 <div class="transaction-title">Airtime Auto Conversion</div>
-                <div class="transaction-date">Feb 6, 2026</div>
+                <div class="transaction-date">Feb 7, 2026</div>
               </div>
               <div class="transaction-amount-wrapper">
                 <div class="transaction-status success">SUCCESSFUL</div>
@@ -208,7 +206,7 @@
               </div>
               <div class="transaction-details">
                 <div class="transaction-title">Airtime Auto Conversion</div>
-                <div class="transaction-date">Feb 6, 2026</div>
+                <div class="transaction-date">Feb 7, 2026</div>
               </div>
               <div class="transaction-amount-wrapper">
                 <div class="transaction-status success">SUCCESSFUL</div>
@@ -227,7 +225,7 @@
               </div>
               <div class="transaction-details">
                 <div class="transaction-title">Airtime Auto Conversion</div>
-                <div class="transaction-date">Feb 6, 2026</div>
+                <div class="transaction-date">Feb 7, 2026</div>
               </div>
               <div class="transaction-amount-wrapper">
                 <div class="transaction-status success">SUCCESSFUL</div>
@@ -292,5 +290,14 @@
     </div>
 
     <script src="/app.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('Service Worker registered'))
+            .catch(err => console.log('Service Worker registration failed:', err));
+        });
+      }
+    </script>
   </body>
 </html>
